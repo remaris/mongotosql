@@ -1,0 +1,24 @@
+﻿{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6", 
+    "module": "commonjs",
+    "rootDir": "src", 
+    "outDir": "build",
+    "inlineSourceMap": true,
+    "moduleResolution": "node",
+    "watch": false
+  },
+  "exclude": [
+    "node_modules",
+    "old",
+    "build",
+    "src/custom_modules/chrono-node",
+    "src/custom_modules/node-normalizer",
+    "src/custom_modules/qtypes2",
+    "src/custom_modules/NumbersUtil",
+    "./vscode"
+  ]
+}

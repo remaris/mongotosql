@@ -1,0 +1,25 @@
+{
+    "mssql": {
+        "connection": {
+            "server": "",
+            "user": "",
+            "password": "",
+            "database": "",
+            "options": {
+                "encrypt": true
+            }
+        },
+        "table": ""
+    },
+    "mongo": {
+        "connectionString": "",
+        "collection": "",
+        "query": {  }
+    },
+    "schema": {
+        "field1": { "source": "Field1", "type": "string" },
+        "field2": { "source": "Field2", "type": "number" },
+        "field3": { "source": "Field3", "type": "datetime" }
+    },
+    "frequency": 0
+}
