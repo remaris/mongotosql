@@ -1,5 +1,5 @@
 {
-  "name": "analyitcs_etl",
+  "name": "mongotosql",
   "version": "1.0.0",
   "description": "Mongo to MSSQL ETL Tool",
   "main": "build/etl.js",
