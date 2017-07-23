@@ -46,3 +46,4 @@ The admin can choose which fields to insert by defining a schema. The types in t
 | string   | Regular Strings, used also for nchar and varchar | Will try to convert to string, otherwise empty string       |
 | number   | All numbers                                      | Will try to convert to number, otherwise 0                  |
 | datetime | Date field in SQL                                | If source is date, will convert to datetime, otherwise null |
+| bit      | Bit (0/1) field in SQL, similar to boolean       | If source exists or is true, then 1, otherwise 0            |

@@ -47,8 +47,9 @@ let parseDoc = (doc: any): string => {
             switch (options.schema[field].type) {
                 case "string":
                     if (typeof value === 'string') value = value.replace(/'/g, "''");
-                    else if (typeof value === 'object') value = JSON.stringify(value).replace("'", "''");
+                    else if (typeof value === 'object') value = JSON.stringify(value).replace(/'/g, "''");
                     else if (typeof value === 'number') value = value.toString();
+                    else if (typeof value === 'boolean') value = (value) ? "1" : "0";
                     else value = "";
                     value = "'" + value + "'";
                     break;
@@ -65,6 +66,9 @@ let parseDoc = (doc: any): string => {
                     } else value = "";
                     value = "'" + value + "'";
                     break;
+                case "bit":
+                    value = (value) ? 1 : 0;
+                    break;
             }
             values.push(value);
         }
@@ -78,6 +82,7 @@ let parseDoc = (doc: any): string => {
  */
 let runETL = async (date: Date): Promise<void> => {
     let errorlog = "";
+    let curDate = new Date();
     try {
         // Initialise MongoDB and SQL connections
         let mongoDB = await MongoClient.connect(options.mongo.connectionString);
@@ -91,6 +96,10 @@ let runETL = async (date: Date): Promise<void> => {
 
         let mongoCollection = mongoDB.collection(options.mongo.collection);
         process.stdout.write("\n## " + chalk.green("Loading documents from Mongo for query " + JSON.stringify(query)));
+        
+        // save timestamp for next cutoff
+        curDate = new Date();
+
         let mongoResult = await mongoCollection.find(query).toArray();
         let mongoCount = await mongoResult.length;
 
@@ -145,7 +154,6 @@ let runETL = async (date: Date): Promise<void> => {
             });
         }
         process.stdout.write("\n## " + chalk.green("Awaiting next execution in " + chalk.yellow(options.frequency.toString()) + " ms"));
-        let curDate = new Date();
         setTimeout(() => {
             // run subsequent ETL with date set for incremental update
             runETL(curDate);
