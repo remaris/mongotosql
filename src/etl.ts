@@ -102,9 +102,11 @@ let runETL = async (date: Date): Promise<void> => {
         const transaction = new mssql.Transaction(sql);
         await transaction.begin();
         let r = await new mssql.Request(transaction);
-        if (!date) await r.query("DELETE FROM " + options.mssql.table + " WHERE 1=1");
-
-        process.stdout.write("\n## " + chalk.green("Table '" + options.mssql.table + "' purged"));
+        if (!date) {
+            await r.query("DELETE FROM " + options.mssql.table + " WHERE 1=1");
+            process.stdout.write("\n## " + chalk.green("Table '" + options.mssql.table + "' purged"));
+        }
+        
         process.stdout.write("\n## " + chalk.yellow(x.toString()) + chalk.green(" records written"));
 
         // loop through all MongoDB documents and parse them into the correct format for inserting into SQL
