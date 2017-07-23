@@ -5,6 +5,7 @@ The admin can choose which fields to insert by defining a schema. The types in t
 
 # Getting Started
 
+1.  Install nodejs
 1.	Clone or download the repo
 2.	Install dependencies with `npm install`
 3.  Modify `src/config.json` to your liking (see below)
