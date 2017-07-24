@@ -1,7 +1,7 @@
 # Introduction 
-This tool extracts documents from a MongoDB collection and inserts all or parts of them into a MSSQL DB. 
+This tool extracts documents from a MongoDB collection, transforms them if needed and loads all or parts of them into a MSSQL DB. 
 
-The admin can choose which fields to insert by defining a schema. The types in the schema are used for automatic conversion.
+The admin can choose which fields to insert by defining a schema. The types in the schema are used for automatic transformation.
 
 # Getting Started
 
@@ -42,7 +42,7 @@ The admin can choose which fields to insert by defining a schema. The types in t
 }
 ```
 
-| Type     | Description                                      | Conversion                                                  |
+| Type     | Description                                      | Transformation                                              |
 |----------|--------------------------------------------------|-------------------------------------------------------------|
 | string   | Regular Strings, used also for nchar and varchar | Will try to convert to string, otherwise empty string       |
 | number   | All numbers                                      | Will try to convert to number, otherwise 0                  |
