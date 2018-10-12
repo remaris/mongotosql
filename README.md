@@ -1,3 +1,8 @@
+# Deprecation
+This repository is no longer maintained because it was only necessary for our ``2.X product line``. The newer Cognigy.AI 3.X versions have a dedicated ``odata`` interface you can use to connect to and retrieve analytics information from.
+
+---
+
 # Introduction 
 This tool extracts documents from a MongoDB collection, transforms them if needed and loads all or parts of them into a MSSQL DB. 
 
