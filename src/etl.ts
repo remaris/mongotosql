@@ -12,7 +12,12 @@ import * as chalk from 'chalk';
 import * as fs from 'fs';
 const mssql = require('mssql');
 
-const options = require('./config.json');
+let configFile = './config.json';
+if (process.argv.length === 3) {
+	configFile = process.argv[2];
+}
+
+const options = require(configFile);
 
 /**
  * Creates the initial fields array
@@ -45,6 +50,9 @@ let parseDoc = (doc: any): string => {
 			}
 
 			switch (options.schema[field].type) {
+				case "id":
+					value = "'" + value + "'";
+					break;
 				case "string":
 					if (typeof value === 'string') value = value.replace(/'/g, "''");
 					else if (typeof value === 'object') value = JSON.stringify(value).replace(/'/g, "''");
